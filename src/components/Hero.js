@@ -1,39 +1,73 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import ParticleBackground from './ParticleBackground';
 
 export default function Hero() {
   const heroRef = useRef(null);
+  const [text, setText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
   
+  const texts = [
+    "Engineering Student & Backend Developer",
+    "Linux Enthusiast & DevOps Practitioner"
+  ];
+
   useEffect(() => {
-    // Animation for the hero section elements
+    const currentText = texts[currentTextIndex];
+    const typingSpeed = isDeleting ? 50 : 100;
+
+    const interval = setInterval(() => {
+      if (isDeleting) {
+        setText(prev => prev.slice(0, -1));
+        if (text === '') {
+          setIsDeleting(false);
+          setCurrentTextIndex(prev => (prev + 1) % texts.length);
+        }
+      } else {
+        if (text === currentText) {
+          setTimeout(() => setIsDeleting(true), 2000);
+        } else {
+          setText(currentText.slice(0, text.length + 1));
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearInterval(interval);
+  }, [text, isDeleting, currentTextIndex]);
+
+  useEffect(() => {
     const heroElement = heroRef.current;
     if (heroElement) {
       const title = heroElement.querySelector('.hero-title');
       const subtitle = heroElement.querySelector('.hero-subtitle');
       const cta = heroElement.querySelector('.cta-container');
       
+      title.style.opacity = '1';
+      subtitle.style.opacity = '1';
+      subtitle.style.transform = 'translateY(0)';
+      cta.style.opacity = '1';
+      
       title.classList.add('fade-in');
-      
-      setTimeout(() => {
-        subtitle.classList.add('slide-up');
-      }, 400);
-      
-      setTimeout(() => {
-        cta.classList.add('fade-in');
-      }, 800);
+      subtitle.classList.add('slide-up');
+      cta.classList.add('fade-in');
     }
   }, []);
 
   return (
     <section className="hero" id="home" ref={heroRef}>
+      <ParticleBackground />
       <div className="container hero-container">
         <div className="hero-content">
-          <h1 className="hero-title">John Doe</h1>
-          <h2 className="hero-subtitle">Backend Developer & System Architect</h2>
+          <h1 className="hero-title">MD. Ashikur Rahman Puspo</h1>
+          <h2 className="hero-subtitle">
+            <span className="typing-text">{text}</span>
+            <span className="cursor">|</span>
+          </h2>
           <p className="hero-description">
-            Building robust, scalable backend systems and APIs that power modern applications.
+            Engineering student at United International University (2023-present)
           </p>
           <div className="cta-container">
             <Link href="#projects" className="btn primary-btn">View My Work</Link>
@@ -46,11 +80,11 @@ export default function Hero() {
               <code>
 {`// Backend expertise
 const developer = {
-  name: "John Doe",
-  skills: ["Node.js", "Python", "Java", "SQL"],
-  architecture: ["Microservices", "Serverless"],
-  databases: ["PostgreSQL", "MongoDB", "Redis"],
-  cloud: ["AWS", "Azure", "GCP"],
+  name: "MD. Ashikur Rahman Puspo",
+  education: "UIU Engineering Student (2023-present)",
+  languages: ["C", "C++ with DSA", "Go", "Java", "PHP"],
+  databases: ["MongoDB", "MySQL"],
+  tools: ["Linux (Arch)", "Git", "Docker", "Neovim", "Tmux"],
   passion: "Building scalable systems"
 };
 
@@ -75,9 +109,17 @@ developer.connect();`}
           display: flex;
           align-items: center;
           position: relative;
-          padding-top: 80px; /* Account for fixed header */
-          background: linear-gradient(135deg, var(--background-color) 0%, #e6f2f2 100%);
+          padding-top: 80px;
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(230, 242, 242, 0.1) 100%);
           overflow: hidden;
+        }
+
+        .hero-container {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
         }
 
         .hero::before {
@@ -104,14 +146,6 @@ developer.connect();`}
           z-index: 0;
         }
 
-        .hero-container {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          position: relative;
-          z-index: 1;
-        }
-
         .hero-content {
           flex: 1;
           max-width: 600px;
@@ -121,15 +155,32 @@ developer.connect();`}
           font-size: 4rem;
           margin-bottom: 0.5rem;
           color: var(--primary-color);
-          opacity: 0;
+          opacity: 1;
+          transition: opacity 0.8s ease;
         }
 
         .hero-subtitle {
           font-size: 1.8rem;
           margin-bottom: 1.5rem;
           color: var(--secondary-color);
-          opacity: 0;
-          transform: translateY(20px);
+          opacity: 1;
+          transform: translateY(0);
+          transition: opacity 0.8s ease, transform 0.8s ease;
+          min-height: 2.5rem;
+        }
+
+        .typing-text {
+          display: inline-block;
+        }
+
+        .cursor {
+          display: inline-block;
+          animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
         }
 
         .hero-description {
@@ -141,13 +192,32 @@ developer.connect();`}
 
         .cta-container {
           display: flex;
-          gap: 1rem;
-          opacity: 0;
+          gap: 1.5rem;
+          opacity: 1;
+          margin-top: 2rem;
+          transition: opacity 0.8s ease;
+        }
+
+        .btn {
+          padding: 1rem 2rem;
+          font-size: 1.1rem;
+          font-weight: 600;
+          border-radius: 8px;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .primary-btn {
           background-color: var(--secondary-color);
           color: white;
+          border: none;
+        }
+
+        .primary-btn:hover {
+          background-color: var(--primary-color);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(91, 192, 190, 0.3);
         }
 
         .secondary-btn {
@@ -159,6 +229,8 @@ developer.connect();`}
         .secondary-btn:hover {
           background-color: var(--primary-color);
           color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(91, 192, 190, 0.3);
         }
 
         .hero-visual {
@@ -170,7 +242,7 @@ developer.connect();`}
         }
 
         .code-block {
-          background-color: var(--accent-color);
+          background-color: #1a1a2e;
           border-radius: 8px;
           padding: 1.5rem;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -178,10 +250,12 @@ developer.connect();`}
           max-width: 500px;
           transform: rotate(2deg);
           transition: transform var(--transition-normal);
+          border: 1px solid #4a4a8f;
         }
 
         .code-block:hover {
           transform: rotate(0deg) scale(1.02);
+          box-shadow: 0 0 20px rgba(74, 74, 143, 0.3);
         }
 
         .code-block pre {
@@ -190,10 +264,11 @@ developer.connect();`}
         }
 
         .code-block code {
-          color: #f8f8f2;
+          color: #00ff9d;
           font-family: 'Fira Code', 'Courier New', monospace;
           font-size: 0.9rem;
           line-height: 1.5;
+          text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
         }
 
         /* Scroll indicator */

@@ -50,43 +50,38 @@ export default function Skills() {
     };
   }, []);
 
-  const backendSkills = [
-    { name: 'Node.js', progress: 95 },
-    { name: 'Python', progress: 90 },
-    { name: 'Java', progress: 85 },
-    { name: 'Go', progress: 75 },
-    { name: 'PHP', progress: 80 },
+  const programmingSkills = [
+    { name: 'C', progress: 90 },
+    { name: 'C++ with DSA', progress: 85 },
+    { name: 'Go', progress: 80 },
+    { name: 'Java', progress: 75 },
+    { name: 'PHP', progress: 70 }
   ];
 
   const databaseSkills = [
-    { name: 'PostgreSQL', progress: 90 },
-    { name: 'MongoDB', progress: 92 },
-    { name: 'Redis', progress: 85 },
-    { name: 'MySQL', progress: 88 },
-    { name: 'Elasticsearch', progress: 78 },
+    { name: 'MongoDB', progress: 85 },
+    { name: 'MySQL', progress: 80 },
+    { name: 'Postman', progress: 90 },
+    { name: 'TablePlus', progress: 85 }
   ];
 
   const devOpsSkills = [
-    { name: 'Docker', progress: 90 },
-    { name: 'Kubernetes', progress: 85 },
-    { name: 'CI/CD', progress: 88 },
-    { name: 'AWS', progress: 92 },
-    { name: 'Terraform', progress: 80 },
+    { name: 'Linux (Arch)', progress: 90 },
+    { name: 'Git', progress: 85 },
+    { name: 'Docker', progress: 80 }
   ];
 
   const otherSkills = [
-    'RESTful APIs',
-    'GraphQL',
-    'Microservices',
-    'Serverless',
-    'System Design',
-    'Performance Optimization',
-    'Security',
-    'Testing',
-    'Message Queues',
-    'WebSockets',
-    'gRPC',
-    'OAuth/JWT',
+    { name: 'Ghosty', progress: 85 },
+    { name: 'Neovim', progress: 85 },
+    { name: 'Tmux', progress: 80 },
+    { name: 'Version Control', progress: 90 },
+    { name: 'Shell Scripting', progress: 85 },
+    { name: 'Containerization', progress: 80 },
+    { name: 'Development Workflow', progress: 85 },
+    { name: 'API Design', progress: 80 },
+    // { name: 'Backend Development', progress: 85 },
+    { name: 'System Architecture', progress: 80 }
   ];
 
   return (
@@ -94,220 +89,241 @@ export default function Skills() {
       <div className="container">
         <h2 className="section-title animate-on-scroll">Technical Skills</h2>
         <p className="section-description animate-on-scroll">
-          My expertise in backend development spans across multiple technologies, frameworks, and methodologies.
+          My expertise spans across programming languages, databases, and development tools.
         </p>
 
-        <div className="skills-container">
-          <div className="skills-column animate-on-scroll">
-            <h3 className="skills-category">Backend Languages</h3>
-            <div className="skill-bars">
-              {backendSkills.map((skill, index) => (
-                <div className="skill-item" key={index}>
-                  <div className="skill-info">
-                    <span className="skill-name">{skill.name}</span>
-                    <span className="skill-percentage">{skill.progress}%</span>
+        <div className="skills-scroll-container">
+          <div className="skills-container">
+            <div className="skills-category animate-on-scroll">
+              <h3>Programming Languages</h3>
+              <div className="skills-list">
+                {programmingSkills.map((skill) => (
+                  <div key={skill.name} className="skill-item">
+                    <div className="skill-info">
+                      <span className="skill-name">{skill.name}</span>
+                      <span className="skill-progress">{skill.progress}%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div
+                        className="skill-progress-bar"
+                        data-progress={skill.progress}
+                      ></div>
+                    </div>
                   </div>
-                  <div className="skill-progress">
-                    <div 
-                      className="skill-progress-bar" 
-                      data-progress={skill.progress}
-                      style={{ width: '0%' }} // Initial width, will be animated with JS
-                    ></div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="skills-column animate-on-scroll">
-            <h3 className="skills-category">Databases</h3>
-            <div className="skill-bars">
-              {databaseSkills.map((skill, index) => (
-                <div className="skill-item" key={index}>
-                  <div className="skill-info">
-                    <span className="skill-name">{skill.name}</span>
-                    <span className="skill-percentage">{skill.progress}%</span>
+            <div className="skills-category animate-on-scroll">
+              <h3>Databases & Tools</h3>
+              <div className="skills-list">
+                {databaseSkills.map((skill) => (
+                  <div key={skill.name} className="skill-item">
+                    <div className="skill-info">
+                      <span className="skill-name">{skill.name}</span>
+                      <span className="skill-progress">{skill.progress}%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div
+                        className="skill-progress-bar"
+                        data-progress={skill.progress}
+                      ></div>
+                    </div>
                   </div>
-                  <div className="skill-progress">
-                    <div 
-                      className="skill-progress-bar" 
-                      data-progress={skill.progress}
-                      style={{ width: '0%' }} // Initial width, will be animated with JS
-                    ></div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="skills-column animate-on-scroll">
-            <h3 className="skills-category">DevOps & Cloud</h3>
-            <div className="skill-bars">
-              {devOpsSkills.map((skill, index) => (
-                <div className="skill-item" key={index}>
-                  <div className="skill-info">
-                    <span className="skill-name">{skill.name}</span>
-                    <span className="skill-percentage">{skill.progress}%</span>
+            <div className="skills-category animate-on-scroll">
+              <h3>DevOps & Tools</h3>
+              <div className="skills-list">
+                {devOpsSkills.map((skill) => (
+                  <div key={skill.name} className="skill-item">
+                    <div className="skill-info">
+                      <span className="skill-name">{skill.name}</span>
+                      <span className="skill-progress">{skill.progress}%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div
+                        className="skill-progress-bar"
+                        data-progress={skill.progress}
+                      ></div>
+                    </div>
                   </div>
-                  <div className="skill-progress">
-                    <div 
-                      className="skill-progress-bar" 
-                      data-progress={skill.progress}
-                      style={{ width: '0%' }} // Initial width, will be animated with JS
-                    ></div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className="other-skills animate-on-scroll">
-          <h3 className="skills-category">Other Skills & Expertise</h3>
-          <div className="skill-tags">
-            {otherSkills.map((skill, index) => (
-              <span className="skill-tag" key={index}>{skill}</span>
-            ))}
+            <div className="skills-category animate-on-scroll">
+              <h3>Other Skills</h3>
+              <div className="skills-list">
+                {otherSkills.map((skill) => (
+                  <div key={skill.name} className="skill-item">
+                    <div className="skill-info">
+                      <span className="skill-name">{skill.name}</span>
+                      <span className="skill-progress">{skill.progress}%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div
+                        className="skill-progress-bar"
+                        data-progress={skill.progress}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <style jsx>{`
         .skills {
-          background-color: var(--background-color);
-          position: relative;
+          padding: 100px 0;
+          background: linear-gradient(135deg, rgba(91, 192, 190, 0.1) 0%, rgba(58, 80, 107, 0.1) 100%);
+        }
+
+        .container {
+          max-width: 100%;
+          margin: 0 auto;
+          padding: 0 2rem;
+          overflow: hidden;
         }
 
         .section-title {
+          font-size: 2.5rem;
           text-align: center;
           margin-bottom: 1rem;
-          position: relative;
+          color: var(--primary-color);
+          opacity: 0;
+          transform: translateY(20px);
+          transition: all 0.8s ease;
         }
 
-        .section-title::after {
-          content: '';
-          position: absolute;
-          bottom: -10px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 50px;
-          height: 3px;
-          background-color: var(--secondary-color);
+        .section-title.visible {
+          opacity: 1;
+          transform: translateY(0);
         }
 
         .section-description {
           text-align: center;
-          max-width: 700px;
-          margin: 0 auto 3rem;
           color: var(--text-color);
+          margin-bottom: 3rem;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: all 0.8s ease;
+        }
+
+        .section-description.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .skills-scroll-container {
+          overflow-x: auto;
+          padding-bottom: 1rem;
+          scrollbar-width: thin;
+          scrollbar-color: var(--secondary-color) rgba(255, 255, 255, 0.1);
+        }
+
+        .skills-scroll-container::-webkit-scrollbar {
+          height: 8px;
+        }
+
+        .skills-scroll-container::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 4px;
+        }
+
+        .skills-scroll-container::-webkit-scrollbar-thumb {
+          background: var(--secondary-color);
+          border-radius: 4px;
         }
 
         .skills-container {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          display: flex;
           gap: 2rem;
-          margin-bottom: 3rem;
-        }
-
-        .skills-column {
-          background-color: var(--card-background);
-          border-radius: 8px;
-          padding: 1.5rem;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-        }
-
-        .skills-column:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+          min-width: min-content;
+          padding: 1rem;
         }
 
         .skills-category {
-          color: var(--primary-color);
-          margin-bottom: 1.5rem;
-          padding-bottom: 0.5rem;
-          border-bottom: 1px solid var(--border-color);
+          background: rgba(255, 255, 255, 0.05);
+          padding: 2rem;
+          border-radius: 1rem;
+          backdrop-filter: blur(10px);
+          opacity: 0;
+          transform: translateY(20px);
+          transition: all 0.8s ease;
+          min-width: 400px;
         }
 
-        .skill-bars {
+        .skills-category.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .skills-category h3 {
+          color: var(--secondary-color);
+          font-size: 1.5rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .skills-list {
           display: flex;
           flex-direction: column;
-          gap: 1.2rem;
+          gap: 1rem;
         }
 
         .skill-item {
-          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
         }
 
         .skill-info {
           display: flex;
           justify-content: space-between;
-          margin-bottom: 0.5rem;
+          align-items: center;
         }
 
         .skill-name {
+          color: var(--text-color);
           font-weight: 500;
         }
 
-        .skill-percentage {
+        .skill-progress {
           color: var(--secondary-color);
           font-weight: 600;
         }
 
-        .skill-progress {
+        .skill-bar {
           height: 8px;
-          background-color: var(--border-color);
+          background: rgba(255, 255, 255, 0.1);
           border-radius: 4px;
           overflow: hidden;
         }
 
         .skill-progress-bar {
           height: 100%;
-          background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+          background: var(--secondary-color);
           border-radius: 4px;
-          width: 0; /* Initial width, will be animated with JS */
-          transition: width 1.5s ease-in-out;
+          width: 0;
+          transition: width 1s ease;
         }
 
-        .other-skills {
-          background-color: var(--card-background);
-          border-radius: 8px;
-          padding: 1.5rem;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+        @media (max-width: 768px) {
+          .skills {
+            padding: 60px 0;
+          }
 
-        .skill-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.8rem;
-          margin-top: 1rem;
-        }
+          .section-title {
+            font-size: 2rem;
+          }
 
-        .skill-tag {
-          background-color: rgba(91, 192, 190, 0.1);
-          color: var(--primary-color);
-          padding: 0.5rem 1rem;
-          border-radius: 20px;
-          font-size: 0.9rem;
-          font-weight: 500;
-          transition: background-color var(--transition-fast), transform var(--transition-fast);
-        }
-
-        .skill-tag:hover {
-          background-color: rgba(91, 192, 190, 0.2);
-          transform: translateY(-2px);
-        }
-
-        /* Animation classes */
-        .animate-on-scroll {
-          opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .animate-on-scroll.visible {
-          opacity: 1;
-          transform: translateY(0);
+          .skills-category {
+            min-width: 300px;
+          }
         }
       `}</style>
     </section>

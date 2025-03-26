@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-content">
           <div className="footer-copyright">
-            <p>&copy; {currentYear} John Doe. All rights reserved.</p>
+            <p>&copy; {currentYear} lobstar. All rights reserved.</p>
           </div>
           <div className="footer-links">
             <a href="#home">Home</a>

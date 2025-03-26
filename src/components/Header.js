@@ -30,7 +30,7 @@ export default function Header() {
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container header-container">
         <div className="logo">
-          <Link href="/">JD</Link>
+          <Link href="/">LoB*STAR</Link>
         </div>
 
         <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>

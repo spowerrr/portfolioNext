@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import ProfilePicture from './ProfilePicture';
 
 export default function About() {
   const aboutRef = useRef(null);
@@ -40,19 +41,14 @@ export default function About() {
         <div className="about-content">
           <div className="about-image animate-on-scroll">
             <div className="image-container">
-              <div className="image-placeholder">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </div>
-              <div className="experience-badge">5+ Years Experience</div>
+              <ProfilePicture />
+              <div className="experience-badge">1+ Years Experience</div>
             </div>
           </div>
           
           <div className="about-text">
             <p className="animate-on-scroll">
-              I'm a passionate Backend Developer with over 5 years of experience designing and implementing robust, scalable server-side applications. My journey in software development began with a deep curiosity about how systems work behind the scenes.
+              I'm a passionate Backend Developer with over 1 year of experience designing and implementing robust, scalable server-side applications. My journey in software development began with a deep curiosity about how systems work behind the scenes.
             </p>
             
             <p className="animate-on-scroll">
@@ -66,17 +62,17 @@ export default function About() {
             <div className="about-details animate-on-scroll">
               <div className="detail-item">
                 <span className="detail-label">Name:</span>
-                <span className="detail-value">John Doe</span>
+                <span className="detail-value">MD. Ashikur Rahman Puspo</span>
               </div>
               
               <div className="detail-item">
                 <span className="detail-label">Email:</span>
-                <span className="detail-value">john.doe@example.com</span>
+                <span className="detail-value">puspopuspo520@gmail.com</span>
               </div>
               
               <div className="detail-item">
                 <span className="detail-label">Location:</span>
-                <span className="detail-value">San Francisco, CA</span>
+                <span className="detail-value">Dhaka, Bangladesh</span>
               </div>
               
               <div className="detail-item">
@@ -139,30 +135,16 @@ export default function About() {
           flex: 1;
           display: flex;
           justify-content: center;
+          width: 100%;
         }
         
         .image-container {
           position: relative;
-          width: 300px;
-          height: 300px;
-        }
-        
-        .image-placeholder {
           width: 100%;
-          height: 100%;
-          border-radius: 20px;
-          background-color: var(--primary-color);
+          max-width: 1200px;
           display: flex;
-          align-items: center;
           justify-content: center;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-          overflow: hidden;
-        }
-        
-        .image-placeholder svg {
-          width: 60%;
-          height: 60%;
-          color: rgba(255, 255, 255, 0.8);
+          align-items: center;
         }
         
         .experience-badge {
@@ -250,33 +232,16 @@ export default function About() {
           transform: translateY(0);
         }
         
-        /* Responsive styles */
-        @media (max-width: 992px) {
+        @media (max-width: 768px) {
           .about-content {
             flex-direction: column;
             gap: 2rem;
           }
           
           .about-image {
-            margin-bottom: 1rem;
+            order: -1;
           }
           
-          .about-text {
-            text-align: center;
-          }
-          
-          .about-details {
-            grid-template-columns: 1fr;
-            max-width: 400px;
-            margin: 2rem auto;
-          }
-          
-          .about-cta {
-            justify-content: center;
-          }
-        }
-        
-        @media (max-width: 576px) {
           .image-container {
             width: 250px;
             height: 250px;
@@ -284,16 +249,6 @@ export default function About() {
           
           .about-details {
             grid-template-columns: 1fr;
-          }
-          
-          .about-cta {
-            flex-direction: column;
-            align-items: center;
-          }
-          
-          .about-cta .btn {
-            width: 100%;
-            text-align: center;
           }
         }
       `}</style>
