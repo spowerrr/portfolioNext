@@ -44,6 +44,8 @@ export default function CustomCursor() {
       if (cursorRef.current) {
         cursorRef.current.style.display = 'block';
         cursorRef.current.style.opacity = '1';
+        cursorRef.current.style.visibility = 'visible';
+        cursorRef.current.style.pointerEvents = 'none';
       }
     };
     
@@ -60,6 +62,8 @@ export default function CustomCursor() {
     if (cursorRef.current) {
       cursorRef.current.style.display = 'block';
       cursorRef.current.style.opacity = '1';
+      cursorRef.current.style.visibility = 'visible';
+      cursorRef.current.style.pointerEvents = 'none';
     }
     
     // Track cursor position with smooth animation
@@ -68,6 +72,8 @@ export default function CustomCursor() {
       if (cursorRef.current) {
         cursorRef.current.style.display = 'block';
         cursorRef.current.style.opacity = '1';
+        cursorRef.current.style.visibility = 'visible';
+        cursorRef.current.style.pointerEvents = 'none';
       }
     };
 
@@ -187,15 +193,10 @@ export default function CustomCursor() {
         /* Hide default cursor when custom cursor is visible */
         body.cursor-hidden {
           cursor: none !important;
+          overflow-x: hidden;
         }
         
-        body.cursor-hidden a,
-        body.cursor-hidden button,
-        body.cursor-hidden .card,
-        body.cursor-hidden input,
-        body.cursor-hidden textarea,
-        body.cursor-hidden select,
-        body.cursor-hidden [role="button"] {
+        body.cursor-hidden * {
           cursor: none !important;
         }
 
@@ -205,9 +206,9 @@ export default function CustomCursor() {
           width: 40px;
           height: 40px;
           border-radius: 50%;
-          pointer-events: none;
+          pointer-events: none !important;
           transform: translate(-50%, -50%);
-          z-index: 99999;
+          z-index: 999999;
           opacity: 1 !important;
           display: block !important;
           transition: opacity 0.3s ease, transform 0.2s ease;
@@ -221,6 +222,7 @@ export default function CustomCursor() {
         .custom-cursor.visible {
           opacity: 1 !important;
           display: block !important;
+          visibility: visible !important;
         }
 
         .cursor-dot {
@@ -235,7 +237,8 @@ export default function CustomCursor() {
           transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease;
           box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
           will-change: transform;
-          z-index: 100000;
+          z-index: 1000000;
+          pointer-events: none !important;
         }
         
         .cursor-ring {
@@ -253,7 +256,8 @@ export default function CustomCursor() {
                       transform 0.3s ease;
           box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
           will-change: transform, width, height;
-          z-index: 99999;
+          z-index: 999999;
+          pointer-events: none !important;
         }
 
         .custom-cursor.hover .cursor-ring {

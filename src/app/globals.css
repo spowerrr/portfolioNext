@@ -15,20 +15,24 @@ body.cursor-hidden * {
   cursor: none !important;
 }
 
-/* Ensure interactive elements show the custom cursor */
-body.cursor-hidden a,
-body.cursor-hidden button,
-body.cursor-hidden .card,
-body.cursor-hidden input,
-body.cursor-hidden textarea,
-body.cursor-hidden select,
-body.cursor-hidden [role="button"] {
-  cursor: none !important;
-}
-
 /* Remove any cursor styles from buttons */
 button {
   font-family: inherit;
+  cursor: none !important;
+}
+
+/* Remove any cursor styles from links */
+a {
+  cursor: none !important;
+}
+
+/* Remove any cursor styles from interactive elements */
+.card,
+input,
+textarea,
+select,
+[role="button"] {
+  cursor: none !important;
 }
 
 :root {
