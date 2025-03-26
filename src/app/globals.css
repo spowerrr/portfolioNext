@@ -1,0 +1,315 @@
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure cursor is hidden on the entire body when custom cursor is active */
+body.cursor-hidden {
+  cursor: none !important;
+  overflow-x: hidden;
+}
+
+body.cursor-hidden * {
+  cursor: none !important;
+}
+
+/* Ensure interactive elements show the custom cursor */
+body.cursor-hidden a,
+body.cursor-hidden button,
+body.cursor-hidden .card,
+body.cursor-hidden input,
+body.cursor-hidden textarea,
+body.cursor-hidden select,
+body.cursor-hidden [role="button"] {
+  cursor: none !important;
+}
+
+/* Remove any cursor styles from buttons */
+button {
+  font-family: inherit;
+}
+
+:root {
+  /* Color palette - light theme (default) */
+  --primary-color: #3a506b;
+  --secondary-color: #5bc0be;
+  --accent-color: #0b132b;
+  --text-color: #1c2541;
+  --light-color: #f8f9fa;
+  --background-color: #f5f5f5;
+  --card-background: #ffffff;
+  --border-color: #e0e0e0;
+  
+  /* Dark theme variables */
+  --dark-primary-color: #5bc0be;
+  --dark-secondary-color: #3a506b;
+  --dark-accent-color: #6fffe9;
+  --dark-text-color: #f8f9fa;
+  --dark-light-color: #1c2541;
+  --dark-background-color: #0b132b;
+  --dark-card-background: #1c2541;
+  --dark-border-color: #3a506b;
+  
+  /* Typography */
+  --font-size-small: 0.875rem;
+  --font-size-normal: 1rem;
+  --font-size-medium: 1.25rem;
+  --font-size-large: 1.5rem;
+  --font-size-xlarge: 2rem;
+  --font-size-xxlarge: 3rem;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+html {
+  scroll-behavior: smooth; /* Enable smooth scrolling */
+  font-size: 16px;
+  scroll-padding-top: 80px; /* Account for fixed header */
+}
+
+/* Improved scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 10px;
+  border: 3px solid var(--background-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+/* Apply dark theme when data-theme="dark" is set on html element */
+html[data-theme="dark"] {
+  --primary-color: var(--dark-primary-color);
+  --secondary-color: var(--dark-secondary-color);
+  --accent-color: var(--dark-accent-color);
+  --text-color: var(--dark-text-color);
+  --light-color: var(--dark-light-color);
+  --background-color: var(--dark-background-color);
+  --card-background: var(--dark-card-background);
+  --border-color: var(--dark-border-color);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Custom cursor styles are now defined in CustomCursor.js component */
+
+/* Section styles */
+section {
+  padding: var(--spacing-xl) 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+  color: var(--primary-color);
+}
+
+h1 {
+  font-size: var(--font-size-xxlarge);
+}
+
+h2 {
+  font-size: var(--font-size-xlarge);
+}
+
+h3 {
+  font-size: var(--font-size-large);
+}
+
+/* Button styles */
+.btn {
+  display: inline-block;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 4px 10px rgba(91, 192, 190, 0.2);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: var(--primary-color);
+  transition: width var(--transition-normal);
+  z-index: -1;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(91, 192, 190, 0.3);
+}
+
+.btn:hover::before {
+  width: 100%;
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(91, 192, 190, 0.2);
+}
+
+/* Card styles */
+.card {
+  background-color: var(--card-background);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-normal);
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-normal);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.slide-up {
+  animation: slideUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.scale-in {
+  animation: scaleIn 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.bounce {
+  animation: bounce 1s cubic-bezier(0.25, 0.1, 0.25, 1.5) infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  :root {
+    --font-size-xxlarge: 2.5rem;
+    --font-size-xlarge: 1.75rem;
+  }
+  
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+  
+  section {
+    padding: var(--spacing-lg) 0;
+  }
+}
